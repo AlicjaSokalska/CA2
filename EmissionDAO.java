@@ -7,8 +7,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import entities.Emission;
-import entities.Prediction;
-import entities.User;
 
 import java.util.List;
 //update
@@ -84,7 +82,7 @@ public class EmissionDAO {
 		
 		  public List<Emission> getEmissionsByValue(double value) {
 		        EntityManager em = emf.createEntityManager();
-		        List<Emission> emissions = em.createQuery("SELECT e FROM Emissionep WHERE e.value = :value", Emission.class)
+		        List<Emission> emissions = em.createQuery("SELECT e FROM Emission e WHERE e.value = :value", Emission.class)
 		                .setParameter("value", value)
 		                .getResultList();
 		        em.close();
@@ -98,4 +96,11 @@ public class EmissionDAO {
 		        em.close();
 		        return emission;
 		    }
+
+		   
+		   
+		   
+		public void saveEmission(Emission emission) {
+			 persist(emission);
+		}
 		}
